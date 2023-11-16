@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Hola {{nombre}} tu tienes {{edad}}</h1>
+    <p>Los datos de las pertenencias que tiene son:</p>
+
+    {%for pertenencia in pertenencias%}
+        {% for key, value in pertenencia.items %}
+            <p>{{key}}: {{value}}</p>
+        {% endfor %}
+    {%endfor%}
+    {% if edad == 27 %}
+        <p>esta persona tiene 27 años</p>
+    {% endif %}
+</body>
+</html>

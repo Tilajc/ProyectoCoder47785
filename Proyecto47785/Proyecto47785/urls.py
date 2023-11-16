@@ -18,11 +18,12 @@ from django.contrib import admin
 from django.urls import path
 from django.contrib import admin
 from django.urls import path
-from Proyecto47785.views import saludo, saludo_html, saludo_nombre
+from Proyecto47785.views import saludo, saludo_html, saludo_nombre, saludo_plantilla
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('saludo/', saludo),
     path('saludoh/', saludo_html),
-    path('saludo/<nombre>', saludo_nombre)
+    path('saludo/<nombre>', saludo_nombre),
+    path('plantilla1/', saludo_plantilla)
 ]
