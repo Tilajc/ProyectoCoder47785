@@ -1,5 +1,5 @@
 """
-URL configuration for Proyecto47785 project.
+URL configuration for ProyectoCoder47785 project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.2/topics/http/urls/
@@ -16,14 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from django.contrib import admin
-from django.urls import path
-from Proyecto47785.views import saludo, saludo_html, saludo_nombre, saludo_plantilla
+from AppCoder.views import crear_curso
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('saludo/', saludo),
-    path('saludoh/', saludo_html),
-    path('saludo/<nombre>', saludo_nombre),
-    path('plantilla1/', saludo_plantilla)
+    path('crear_curso/', crear_curso)
 ]
