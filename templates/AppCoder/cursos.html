@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block cambio %}
+    {% for curso in cursos %}
+        <h2>Curso: {{curso.nombre}}</h2>
+        <p>Camada: {{curso.camada}}</p>
+        <hr>
+    {% endfor %}
+{% endblock %}
