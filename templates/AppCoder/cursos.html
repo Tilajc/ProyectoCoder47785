@@ -1,6 +1,12 @@
 {% extends 'base.html' %}
 
 {% block cambio %}
+    <div>
+        <form action="/app/buscar" method="GET">
+            {{ form.as_p }}
+            <input type="submit" value="buscar">
+        </form>
+    </div>
     {% for curso in cursos %}
         <h2>Curso: {{curso.nombre}}</h2>
         <p>Camada: {{curso.camada}}</p>
