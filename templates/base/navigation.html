@@ -2,6 +2,12 @@
             <div class="container">
                 <a class="navbar-brand" href="/app/cursos">Mostrar Cursos</a>
                 <a class="navbar-brand" href="/app/curso">Crear Curso</a>
-                <a class="btn btn-primary" href="#signup">{{nombre}}</a>
+                {% if user.is_authenticated %}
+                <p>{{user.get_username}}</p>
+                <img src="{{ user.avatar.imagen.url }}" style="height: 40px">
+                <a class="btn btn-primary" href="{% url 'Logout' %}">Logout</a>
+                {% else %}
+                <a class="btn btn-primary" href="{% url 'Login' %}">Login</a>
+                {% endif %}
             </div>
 </nav>
