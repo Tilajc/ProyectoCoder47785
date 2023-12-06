@@ -1,10 +1,41 @@
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+
 from AppCoder.models import Curso
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from AppCoder.models import Curso
 from AppCoder.forms import CursoForm, BusquedaCursoForm
+from django.views.generic.detail import DetailView
+
+
+class CursoList(LoginRequiredMixin, ListView):
+    model = Curso
+    template_name = "AppCoder/cursos1.html"
+
+class CursoDetalle(DetailView):
+    model = Curso
+    template_name = "AppCoder/curso_detalle.html"
+
+class CursoCreacion(CreateView):
+    model = Curso
+    success_url = "/app/cursos/listar"
+    template_name = "AppCoder/crear_curso.html"
+    fields = ["nombre", "camada"]
+
+class CursoActualizacion(UpdateView):
+    model = Curso
+    success_url = "/app/cursos/listar"
+    template_name = "AppCoder/crear_curso.html"
+    fields = ["nombre", "camada"]
+
+class CursoEliminar(DeleteView):
+    model = Curso
+    template_name = 'AppCoder/eliminar_curso.html'
+    success_url = '/app/cursos/listar'
 
 
 def mostrar_cursos(request):
@@ -16,6 +47,13 @@ def mostrar_cursos(request):
     }
     return render(request, "AppCoder/cursos.html", contexto)
 
+def eliminar_cursos(request):
+    nombre = request.GET["nombre"]
+    curso = Curso.objects.get(nombre=nombre)
+    curso.delete()
+    return redirect(request, "AppCoder/cursos.html")
+
+
 
 def crear_curso(request):
     curso = Curso(nombre='Python', camada=47785)
@@ -23,7 +61,7 @@ def crear_curso(request):
 
     return redirect("/app/cursos/")
 
-
+@login_required
 def crear_curso_form(request):
     if request.method == "POST":
 

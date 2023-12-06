@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block cambio %}
+    <div>
+        <form action="/app/buscar" method="GET">
+            <input type="text" name="nombre">
+            <input type="submit" value="buscar">
+        </form>
+    </div>
+<p>
+    <a href="{% url 'CursoCreate' %}">Crear</a>
+</p>
+    {% for curso in object_list %}
+        <h2>{{curso.nombre}}</h2>
+        <p class="lead mb-0">
+             numero de camada {{curso.camada}}
+        </p>
+        <p>
+            <a href="{% url 'CursoDetail' curso.id %}">Detalles</a>
+        </p>
+        <p>
+            <a href="{% url 'CursoEditar' curso.id %}">Editar</a>
+        </p>
+        <p>
+            <a href="{% url 'CursoEliminar' curso.id %}">Eliminar</a>
+        </p>
+        <hr>
+    {% endfor %}
+{% endblock %}
